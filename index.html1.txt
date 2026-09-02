@@ -1,0 +1,3444 @@
+<!DOCTYPE html><!DOCTYPE html>
+<html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Kelly's Page</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f8e8f0;
+            color: #333;
+        }
+
+        /* TOP NAVIGATION */
+        .navbar {
+            height: 65px;
+            background: linear-gradient(90deg, #ff4f9a, #ff82bb);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 30px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.15);
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .search {
+            background: white;
+            color: #999;
+            border-radius: 25px;
+            padding: 10px 20px;
+            width: 280px;
+            border: none;
+            outline: none;
+        }
+
+        .nav-icons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .nav-button {
+            background: rgba(255,255,255,0.2);
+            border: none;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .nav-button:hover {
+            background: rgba(255,255,255,0.35);
+        }
+
+        /* MAIN LAYOUT */
+        .page {
+            max-width: 1200px;
+            margin: auto;
+            display: grid;
+            grid-template-columns: 250px 1fr 250px;
+            gap: 20px;
+            padding: 25px 15px;
+        }
+
+        /* SIDEBARS */
+        .sidebar {
+            position: sticky;
+            top: 90px;
+            height: fit-content;
+        }
+
+        .sidebar-card {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        }
+
+        .sidebar-card h3 {
+            color: #e83e8c;
+            margin-bottom: 15px;
+        }
+
+        .menu-item {
+            padding: 12px;
+            border-radius: 10px;
+            cursor: pointer;
+            margin-bottom: 5px;
+        }
+
+        .menu-item:hover {
+            background: #ffe1ee;
+        }
+
+        /* PROFILE */
+        .profile-cover {
+            height: 230px;
+            background-image: url("kelly.jpg");
+            background-size: 100% auto;
+            background-position: center;
+            background-repeat: no-repeat;
+            border-radius: 18px 18px 0 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .profile-picture {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 6px solid white;
+            background: #ffc1dd;
+            position: absolute;
+            bottom: 10px;
+            left: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 55px;
+            overflow: hidden;
+            z-index: 2;
+          
+        }
+        .profile-picture img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          border-radius: 50%;
+          display: block;
+        }
+   
+        .scooby-image {
+          width: 70%;
+          margin: 0 auto;
+          height: 100px;
+          object-fit: contain;
+          display: block;
+        }
+
+
+        .profile-info {
+            background: white;
+            padding: 100px 30px 25px;
+            border-radius: 0 0 18px 18px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            position: relative;
+            z-index: 1;
+        }
+
+        .profile-info h1 {
+            color: #d62f7d;
+            margin-bottom: 5px;
+        }
+
+        .profile-info p {
+            color: #777;
+        }
+
+        .profile-buttons {
+            margin-top: 20px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .pink-button {
+            background: #ff4f9a;
+            color: white;
+            border: none;
+            padding: 11px 20px;
+            border-radius: 22px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .pink-button:hover {
+            background: #e63282;
+        }
+
+        .white-button {
+            background: #ffe1ee;
+            color: #d62f7d;
+            border: none;
+            padding: 11px 20px;
+            border-radius: 22px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        /* CREATE POST */
+        .create-post {
+            background: white;
+            margin-top: 20px;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        }
+
+        .post-input {
+            width: 100%;
+            border: none;
+            background: #f4f4f4;
+            padding: 15px;
+            border-radius: 25px;
+            outline: none;
+            font-size: 15px;
+        }
+
+        .post-actions {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 15px;
+        }
+
+        .post-action {
+            border: none;
+            background: transparent;
+            color: #d62f7d;
+            font-weight: bold;
+            cursor: pointer;
+            padding: 10px;
+        }
+
+        .post-action:hover {
+            background: #ffe1ee;
+            border-radius: 10px;
+        }
+
+        /* POSTS */
+        .post {
+            background: white;
+            border-radius: 15px;
+            margin-top: 20px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        }
+
+        .post-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 15px;
+        }
+
+        .small-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: #ffb4d3;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 25px;
+            overflow: hidden;
+        }
+        .small-avatar img { 
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          border-radius: 50%;
+          
+        }
+         
+        }
+
+        .post-name {
+            font-weight: bold;
+            color: #d62f7d;
+        }
+
+        .post-time {
+            font-size: 12px;
+            color: #999;
+            margin-top: 3px;
+        }
+
+        .post-text {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        /* VIDEO */
+        .video-container {
+            width: 100%;
+            background: #111;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        video {
+            width: 100%;
+            display: block;
+            max-height: 600px;
+        }
+
+        .video-placeholder {
+            height: 400px;
+            background: linear-gradient(135deg, #ff4f9a, #a936d8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 30px;
+            text-align: center;
+            padding: 30px;
+        }
+
+        /* POST STATS */
+        .post-stats {
+            display: flex;
+            justify-content: space-between;
+            color: #888;
+            padding: 12px 5px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .post-buttons {
+            display: flex;
+            justify-content: space-around;
+            padding: 8px 0;
+        }
+
+        .post-buttons button {
+            border: none;
+            background: transparent;
+            padding: 10px 30px;
+            cursor: pointer;
+            font-weight: bold;
+            color: #777;
+            border-radius: 8px;
+        }
+
+        .post-buttons button:hover {
+            background: #ffe1ee;
+            color: #d62f7d;
+        }
+
+        .liked {
+            color: #ff2f8e !important;
+        }
+
+        /* COMMENTS */
+        .comment {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .comment-avatar {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: #ffc2dc;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .comment-box {
+            background: #f1f1f1;
+            padding: 10px 15px;
+            border-radius: 15px;
+            flex: 1;
+        }
+
+        .comment-name {
+            font-weight: bold;
+            color: #d62f7d;
+            font-size: 14px;
+        }
+
+        /* RIGHT SIDEBAR */
+        .friend {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .friend-avatar {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: #ffb1d1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .online {
+            width: 10px;
+            height: 10px;
+            background: #35c759;
+            border-radius: 50%;
+            display: inline-block;
+            margin-left: 5px;
+        }
+
+        /* FOOTER */
+        footer {
+            background: #d62f7d;
+            color: white;
+            text-align: center;
+            padding: 35px;
+            margin-top: 50px;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 950px) {
+            .page {
+                grid-template-columns: 200px 1fr;
+            }
+
+            .right-sidebar {
+                display: none;
+            }
+        }
+
+        @media (max-width: 700px) {
+            .page {
+                display: block;
+            }
+
+            .left-sidebar {
+                display: none;
+            }
+
+            .search {
+                width: 150px;
+            }
+
+            .navbar {
+                padding: 0 12px;
+            }
+
+            .nav-icons {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVIGATION -->
+    <nav class="navbar">
+
+        <div class="logo">
+            💗 Kelly
+        </div>
+
+        <input
+            class="search"
+            type="text"
+            placeholder="Search Kelly's Page..."
+        >
+
+        <div class="nav-icons">
+            <button class="nav-button">🏠 Home</button>
+            <button class="nav-button">👥 Friends</button>
+            <button class="nav-button">💬 Messages</button>
+        </div>
+
+    </nav>
+
+    <!-- MAIN PAGE -->
+    <div class="page">
+
+        <!-- LEFT SIDEBAR -->
+        <aside class="sidebar left-sidebar">
+
+            <div class="sidebar-card">
+
+                <h3>Menu</h3>
+
+                <div class="menu-item">🏠 Home</div>
+                <div class="menu-item">👤 My Profile</div>
+                <div class="menu-item">👥 Friends</div>
+                <div class="menu-item">📸 Photos</div>
+                <div class="menu-item">🎥 Videos</div>
+                <div class="menu-item">❤️ Favorites</div>
+                <div class="menu-item">⚙️ Settings</div>
+
+            </div>
+
+            <div class="sidebar-card">
+
+                <h3>About Kelly</h3>
+
+                <p>
+                    Welcome to my little corner of the internet! 💕
+                </p>
+
+            </div>
+
+        </aside>
+
+        <!-- CENTER CONTENT -->
+        <main>
+
+            <!-- PROFILE -->
+            <section>
+
+                <div class="profile-cover">
+                
+                  
+                    <div class="profile-picture">
+                       <img src="Kelly.jpg" alt="Kelly.jpg">
+                    </div>
+
+                </div>
+
+                <div class="profile-info">
+
+                    <h1>Welcome to Kelly's Page 💗</h1>
+
+                    <p>
+                        Welcome to my page! Follow along for photos,
+                        videos, thoughts, and everything Kelly. ✨
+                    </p>
+
+                    <div class="profile-buttons">
+
+                        <button
+                            class="pink-button"
+                            onclick="followKelly()"
+                        >
+                            ❤️ Follow
+                        </button>
+
+                        <button class="white-button">
+                            ✉️ Message
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+            <!-- CREATE POST -->
+            <div class="create-post">
+
+                <input
+                    id="postInput"
+                    class="post-input"
+                    type="text"
+                    placeholder="What's on your mind, Kelly?"
+                >
+
+                <div class="post-actions">
+
+                    <button class="post-action">
+                        🎥 Video
+                    </button>
+
+                    <button class="post-action">
+                        📷 Photo
+                    </button>
+
+                    <button class="post-action">
+                        😊 Feeling
+                    </button>
+
+                </div>
+
+            </div>
+
+            <!-- VIDEO POST -->
+           <article class="post">
+                <div class="post-header">
+
+                    <div class="small-avatar">
+                       <img src="Kelly.jpg" alt="kelly">
+                    </div>
+                    <div>
+
+                        <div class="post-name">
+                            Kelly Adkins
+                        </div>
+
+                        <div class="post-time">
+                            Just now · 🌎
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="post-text">
+
+                    <strong>My latest video! 🎥💕</strong>
+
+                    <br><br>
+
+                    Welcome to Kelly's Page! Thanks for stopping by. 💗
+
+                </div>
+
+                <div class="video-container">
+
+    <iframe
+        width="100%"
+        height="400"
+        src="https://www.youtube.com/embed/U2WDdccgaDY?autoplay=1&mute=1&playsinline=1"
+        title="It's Called: Freefall"
+        frameborder="0"
+        allow="autoplay; encrypted-media; picture-in-picture"
+        allowfullscreen>
+    </iframe>
+
+                    <!--
+                        REPLACE "kelly-video.mp4"
+                        WITH YOUR OWN VIDEO FILE.
+                    -->
+
+                        Your browser does not support video.
+
+                    </video>
+
+                </div>
+
+                <div class="post-stats">
+
+                    <span id="likeCount">❤️ 128</span>
+
+                    <span>24 comments · 12 shares</span>
+
+                </div>
+
+                <div class="post-buttons">
+
+                    <button onclick="likePost(this)">
+                        ❤️ Like
+                    </button>
+
+                    <button onclick="commentPost()">
+                        💬 Comment
+                    </button>
+
+                    <button>
+                        ↗️ Share
+                    </button>
+
+                </div>
+
+                <div id="comments">
+
+                    <div class="comment">
+
+                        <div class="comment-avatar">
+                            👩
+                        </div>
+
+                        <div class="comment-box">
+
+                            <div class="comment-name">
+                                Maria
+                            </div>
+
+                            This page is so cute! 💕😍
+
+                        </div>
+
+                    </div>
+
+                    <div class="comment">
+
+                        <div class="comment-avatar">
+                            👩🏽
+                        </div>
+
+                        <div class="comment-box">
+
+                            <div class="comment-name">
+                                Jessica
+                            </div>
+
+                            Love the pink theme! 💗
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+            <!-- SECOND POST -->
+            <article class="post">
+
+                <div class="post-header">
+
+                    <div class="small-avatar">
+                       <img src="Kelly.jpg" alt="Kelly">
+                    </div>
+
+                    <div>
+
+                        <div class="post-name">
+                            Kelly Adkins
+                        </div>
+
+                        <div class="post-time">
+                            Yesterday · 🌎
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="post-text">
+
+                    Sometimes you just have to make your own happiness. 💗
+
+                    <br><br>
+
+                    Life is too short not to enjoy the little things,
+                    laugh a lot, and be yourself. ✨
+
+                </div>
+
+                <div>
+                  <img src="Scooby.JPG" alt="Scooby" class="Scooby-image" style="width:50%; height:auto; display:block; margin:0 auto;">
+                </div>
+
+                <div class="post-stats">
+
+                    <span>❤️ 246</span>
+
+                    <span>38 comments · 17 shares</span>
+
+                </div>
+
+                <div class="post-buttons">
+
+                    <button onclick="likePost(this)">
+                        ❤️ Like
+                    </button>
+
+                    <button onclick="commentPost()">
+                        💬 Comment
+                    </button>
+
+                    <button>
+                        ↗️ Share
+                    </button>
+
+                </div>
+
+            </article>
+
+            <!-- THIRD POST -->
+            <article class="post">
+
+                <div class="post-header">
+
+                    <div class="small-avatar">
+                        <img src="Kelly.jpg" alt="Kelly">
+                    </div>
+
+                    <div>
+
+                        <div class="post-name">
+                            Kelly Adkins
+                        </div>
+
+                        <div class="post-time">
+                            3 days ago · 🌎
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="post-text">
+
+                    💗 Things I'm loving right now:
+
+                    <br><br>
+
+                    ☕ Coffee<br>
+                    🎵 Music<br>
+                    💻 Coding<br>
+                    🌸 Pink everything<br>
+                    🎥 Making videos<br>
+                    ✨ Learning new things
+
+                </div>
+
+                <div class="post-stats">
+
+                    <span>❤️ 189</span>
+
+                    <span>31 comments · 9 shares</span>
+
+                </div>
+
+                <div class="post-buttons">
+
+                    <button onclick="likePost(this)">
+                        ❤️ Like
+                    </button>
+
+                    <button onclick="commentPost()">
+                        💬 Comment
+                    </button>
+
+                    <button>
+                        ↗️ Share
+                    </button>
+
+                </div>
+
+            </article>
+
+            <!-- FOURTH POST -->
+            <article class="post">
+
+                <div class="post-header">
+
+                    <div class="small-avatar">
+                        <img sec="Kelly.jpg" alt="Kelly">
+                    </div>
+
+                    <div>
+
+                        <div class="post-name">
+                            Kelly Adkins
+                        </div>
+
+                        <div class="post-time">
+                            1 week ago · 🌎
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="post-text">
+
+                    Welcome to my page! 💕 If you're new here,
+                    make yourself comfortable.
+
+                    <br><br>
+
+                    There will be more videos, pictures, updates,
+                    stories and random things posted here.
+
+                    <br><br>
+
+                    Thanks for being here! 💗
+
+                </div>
+
+                <div class="post-stats">
+
+                    <span>❤️ 315</span>
+
+                    <span>52 comments · 22 shares</span>
+
+                </div>
+
+                <div class="post-buttons">
+
+                    <button onclick="likePost(this)">
+                        ❤️ Like
+                    </button>
+
+                    <button onclick="commentPost()">
+                        💬 Comment
+                    </button>
+
+                    <button>
+                        ↗️ Share
+                    </button>
+
+                </div>
+
+            </article>
+
+        </main>
+
+        <!-- RIGHT SIDEBAR -->
+        <aside class="sidebar right-sidebar">
+
+            <div class="sidebar-card">
+
+                <h3>Friends</h3>
+
+                <div class="friend">
+
+                    <div class="friend-avatar">👩</div>
+
+                    <div>
+                        Maria
+                        <span class="online"></span>
+                    </div>
+
+                </div>
+
+                <div class="friend">
+
+                    <div class="friend-avatar">👩🏽</div>
+
+                    <div>
+                        Jessica
+                        <span class="online"></span>
+                    </div>
+
+                </div>
+
+                <div class="friend">
+
+                    <div class="friend-avatar">👩🏻</div>
+
+                    <div>
+                        Sofia
+                        <span class="online"></span>
+                    </div>
+
+                </div>
+
+                <div class="friend">
+
+                    <div class="friend-avatar">👩🏾</div>
+
+                    <div>
+                        Ashley
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="sidebar-card">
+
+                <h3>Trending 💗</h3>
+
+                <p>🌸 Kelly's Page</p>
+
+                <br>
+
+                <p>🎥 New Videos</p>
+
+                <br>
+
+                <p>💻 Coding</p>
+
+                <br>
+
+                <p>✨ Good Vibes</p>
+
+            </div>
+
+            <div class="sidebar-card">
+
+                <h3>Advertisement</h3>
+
+                <div
+                    style="
+                    background:#ffe1ee;
+                    padding:25px;
+                    border-radius:12px;
+                    text-align:center;
+                    color:#d62f7d;
+                    "
+                >
+                    💗<br>
+                    Your Advertisement Here
+                </div>
+
+            </div>
+
+        </aside>
+
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+
+        <h2>💗 Kelly's Page 💗</h2>
+
+        <br>
+
+        <p>
+            Made with HTML, CSS & JavaScript
+        </p>
+
+        <br>
+
+        <p>
+            © 2026 Kelly's Page · All Rights Reserved
+        </p>
+
+    </footer>
+
+    <!-- JAVASCRIPT -->
+    <script>
+
+        let likes = 128;
+
+        function likePost(button) {
+
+            if (button.classList.contains("liked")) {
+
+                button.classList.remove("liked");
+
+                likes--;
+
+            } else {
+
+                button.classList.add("liked");
+
+                likes++;
+
+            }
+
+            const likeCounter =
+                document.getElementById("likeCount");
+
+            if (likeCounter) {
+
+                likeCounter.textContent =
+                    "❤️ " + likes;
+
+            }
+
+        }
+
+        function commentPost() {
+
+            const comment =
+                prompt("Write your comment:");
+
+            if (!comment || comment.trim() === "") {
+                return;
+            }
+
+            const comments =
+                document.getElementById("comments");
+
+            const newComment =
+                document.createElement("div");
+
+            newComment.className = "comment";
+
+            newComment.innerHTML = `
+
+                <div class="comment-avatar">
+                    👩🏻
+                </div>
+
+                <div class="comment-box">
+
+                    <div class="comment-name">
+                        You
+                    </div>
+
+                    ${comment}
+
+                </div>
+
+            `;
+
+            comments.appendChild(newComment);
+
+        }
+
+        function followKelly() {
+
+            alert(
+                "💕 You are now following Kelly's Page!"
+            );
+
+        }
+
+        /* SIMPLE SEARCH */
+
+        const search =
+            document.querySelector(".search");
+
+        search.addEventListener(
+            "keypress",
+            function(event) {
+
+                if (event.key === "Enter") {
+
+                    alert(
+                        "Searching for: " +
+                        search.value
+                    );
+
+                }
+
+            }
+        );
+
+        /* CREATE POST */
+
+        const postInput =
+            document.getElementById("postInput");
+
+        postInput.addEventListener(
+            "keypress",
+            function(event) {
+
+                if (event.key === "Enter") {
+
+                    if (
+                        postInput.value.trim() === ""
+                    ) {
+                        return;
+                    }
+
+                    alert(
+                        "Your post was created! 💗"
+                    );
+
+                    postInput.value = "";
+
+                }
+
+            }
+        );
+
+    </script>
+
+  
+</body>
+</html><!DOCTYPE html>
+<html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Kelly's Page</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f8e8f0;
+            color: #333;
+        }
+
+        /* TOP NAVIGATION */
+        .navbar {
+            height: 65px;
+            background: linear-gradient(90deg, #ff4f9a, #ff82bb);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 30px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.15);
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .search {
+            background: white;
+            color: #999;
+            border-radius: 25px;
+            padding: 10px 20px;
+            width: 280px;
+            border: none;
+            outline: none;
+        }
+
+        .nav-icons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .nav-button {
+            background: rgba(255,255,255,0.2);
+            border: none;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .nav-button:hover {
+            background: rgba(255,255,255,0.35);
+        }
+
+        /* MAIN LAYOUT */
+        .page {
+            max-width: 1200px;
+            margin: auto;
+            display: grid;
+            grid-template-columns: 250px 1fr 250px;
+            gap: 20px;
+            padding: 25px 15px;
+        }
+
+        /* SIDEBARS */
+        .sidebar {
+            position: sticky;
+            top: 90px;
+            height: fit-content;
+        }
+
+        .sidebar-card {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        }
+
+        .sidebar-card h3 {
+            color: #e83e8c;
+            margin-bottom: 15px;
+        }
+
+        .menu-item {
+            padding: 12px;
+            border-radius: 10px;
+            cursor: pointer;
+            margin-bottom: 5px;
+        }
+
+        .menu-item:hover {
+            background: #ffe1ee;
+        }
+
+        /* PROFILE */
+        .profile-cover {
+            height: 230px;
+            background-image: url("kelly.jpg");
+            background-size: 100% auto;
+            background-position: center;
+            background-repeat: no-repeat;
+            border-radius: 18px 18px 0 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .profile-picture {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 6px solid white;
+            background: #ffc1dd;
+            position: absolute;
+            bottom: 10px;
+            left: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 55px;
+            overflow: hidden;
+            z-index: 2;
+          
+        }
+        .profile-picture img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          border-radius: 50%;
+          display: block;
+        }
+   
+        .scooby-image {
+          width: 70%;
+          margin: 0 auto;
+          height: 100px;
+          object-fit: contain;
+          display: block;
+        }
+
+
+        .profile-info {
+            background: white;
+            padding: 100px 30px 25px;
+            border-radius: 0 0 18px 18px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            position: relative;
+            z-index: 1;
+        }
+
+        .profile-info h1 {
+            color: #d62f7d;
+            margin-bottom: 5px;
+        }
+
+        .profile-info p {
+            color: #777;
+        }
+
+        .profile-buttons {
+            margin-top: 20px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .pink-button {
+            background: #ff4f9a;
+            color: white;
+            border: none;
+            padding: 11px 20px;
+            border-radius: 22px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .pink-button:hover {
+            background: #e63282;
+        }
+
+        .white-button {
+            background: #ffe1ee;
+            color: #d62f7d;
+            border: none;
+            padding: 11px 20px;
+            border-radius: 22px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        /* CREATE POST */
+        .create-post {
+            background: white;
+            margin-top: 20px;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        }
+
+        .post-input {
+            width: 100%;
+            border: none;
+            background: #f4f4f4;
+            padding: 15px;
+            border-radius: 25px;
+            outline: none;
+            font-size: 15px;
+        }
+
+        .post-actions {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 15px;
+        }
+
+        .post-action {
+            border: none;
+            background: transparent;
+            color: #d62f7d;
+            font-weight: bold;
+            cursor: pointer;
+            padding: 10px;
+        }
+
+        .post-action:hover {
+            background: #ffe1ee;
+            border-radius: 10px;
+        }
+
+        /* POSTS */
+        .post {
+            background: white;
+            border-radius: 15px;
+            margin-top: 20px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        }
+
+        .post-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 15px;
+        }
+
+        .small-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: #ffb4d3;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 25px;
+            overflow: hidden;
+        }
+        .small-avatar img { 
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          border-radius: 50%;
+          
+        }
+         
+        }
+
+        .post-name {
+            font-weight: bold;
+            color: #d62f7d;
+        }
+
+        .post-time {
+            font-size: 12px;
+            color: #999;
+            margin-top: 3px;
+        }
+
+        .post-text {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        /* VIDEO */
+        .video-container {
+            width: 100%;
+            background: #111;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        video {
+            width: 100%;
+            display: block;
+            max-height: 600px;
+        }
+
+        .video-placeholder {
+            height: 400px;
+            background: linear-gradient(135deg, #ff4f9a, #a936d8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 30px;
+            text-align: center;
+            padding: 30px;
+        }
+
+        /* POST STATS */
+        .post-stats {
+            display: flex;
+            justify-content: space-between;
+            color: #888;
+            padding: 12px 5px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .post-buttons {
+            display: flex;
+            justify-content: space-around;
+            padding: 8px 0;
+        }
+
+        .post-buttons button {
+            border: none;
+            background: transparent;
+            padding: 10px 30px;
+            cursor: pointer;
+            font-weight: bold;
+            color: #777;
+            border-radius: 8px;
+        }
+
+        .post-buttons button:hover {
+            background: #ffe1ee;
+            color: #d62f7d;
+        }
+
+        .liked {
+            color: #ff2f8e !important;
+        }
+
+        /* COMMENTS */
+        .comment {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .comment-avatar {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: #ffc2dc;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .comment-box {
+            background: #f1f1f1;
+            padding: 10px 15px;
+            border-radius: 15px;
+            flex: 1;
+        }
+
+        .comment-name {
+            font-weight: bold;
+            color: #d62f7d;
+            font-size: 14px;
+        }
+
+        /* RIGHT SIDEBAR */
+        .friend {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .friend-avatar {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: #ffb1d1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .online {
+            width: 10px;
+            height: 10px;
+            background: #35c759;
+            border-radius: 50%;
+            display: inline-block;
+            margin-left: 5px;
+        }
+
+        /* FOOTER */
+        footer {
+            background: #d62f7d;
+            color: white;
+            text-align: center;
+            padding: 35px;
+            margin-top: 50px;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 950px) {
+            .page {
+                grid-template-columns: 200px 1fr;
+            }
+
+            .right-sidebar {
+                display: none;
+            }
+        }
+
+        @media (max-width: 700px) {
+            .page {
+                display: block;
+            }
+
+            .left-sidebar {
+                display: none;
+            }
+
+            .search {
+                width: 150px;
+            }
+
+            .navbar {
+                padding: 0 12px;
+            }
+
+            .nav-icons {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVIGATION -->
+    <nav class="navbar">
+
+        <div class="logo">
+            💗 Kelly
+        </div>
+
+        <input
+            class="search"
+            type="text"
+            placeholder="Search Kelly's Page..."
+        >
+
+        <div class="nav-icons">
+            <button class="nav-button">🏠 Home</button>
+            <button class="nav-button">👥 Friends</button>
+            <button class="nav-button">💬 Messages</button>
+        </div>
+
+    </nav>
+
+    <!-- MAIN PAGE -->
+    <div class="page">
+
+        <!-- LEFT SIDEBAR -->
+        <aside class="sidebar left-sidebar">
+
+            <div class="sidebar-card">
+
+                <h3>Menu</h3>
+
+                <div class="menu-item">🏠 Home</div>
+                <div class="menu-item">👤 My Profile</div>
+                <div class="menu-item">👥 Friends</div>
+                <div class="menu-item">📸 Photos</div>
+                <div class="menu-item">🎥 Videos</div>
+                <div class="menu-item">❤️ Favorites</div>
+                <div class="menu-item">⚙️ Settings</div>
+
+            </div>
+
+            <div class="sidebar-card">
+
+                <h3>About Kelly</h3>
+
+                <p>
+                    Welcome to my little corner of the internet! 💕
+                </p>
+
+            </div>
+
+        </aside>
+
+        <!-- CENTER CONTENT -->
+        <main>
+
+            <!-- PROFILE -->
+            <section>
+
+                <div class="profile-cover">
+                
+                  
+                    <div class="profile-picture">
+                       <img src="Kelly.jpg" alt="Kelly.jpg">
+                    </div>
+
+                </div>
+
+                <div class="profile-info">
+
+                    <h1>Welcome to Kelly's Page 💗</h1>
+
+                    <p>
+                        Welcome to my page! Follow along for photos,
+                        videos, thoughts, and everything Kelly. ✨
+                    </p>
+
+                    <div class="profile-buttons">
+
+                        <button
+                            class="pink-button"
+                            onclick="followKelly()"
+                        >
+                            ❤️ Follow
+                        </button>
+
+                        <button class="white-button">
+                            ✉️ Message
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+            <!-- CREATE POST -->
+            <div class="create-post">
+
+                <input
+                    id="postInput"
+                    class="post-input"
+                    type="text"
+                    placeholder="What's on your mind, Kelly?"
+                >
+
+                <div class="post-actions">
+
+                    <button class="post-action">
+                        🎥 Video
+                    </button>
+
+                    <button class="post-action">
+                        📷 Photo
+                    </button>
+
+                    <button class="post-action">
+                        😊 Feeling
+                    </button>
+
+                </div>
+
+            </div>
+
+            <!-- VIDEO POST -->
+           <article class="post">
+                <div class="post-header">
+
+                    <div class="small-avatar">
+                       <img src="Kelly.jpg" alt="kelly">
+                    </div>
+                    <div>
+
+                        <div class="post-name">
+                            Kelly Adkins
+                        </div>
+
+                        <div class="post-time">
+                            Just now · 🌎
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="post-text">
+
+                    <strong>My latest video! 🎥💕</strong>
+
+                    <br><br>
+
+                    Welcome to Kelly's Page! Thanks for stopping by. 💗
+
+                </div>
+
+                <div class="video-container">
+
+    <iframe
+        width="100%"
+        height="400"
+        src="https://www.youtube.com/embed/U2WDdccgaDY?autoplay=1&mute=1&playsinline=1"
+        title="It's Called: Freefall"
+        frameborder="0"
+        allow="autoplay; encrypted-media; picture-in-picture"
+        allowfullscreen>
+    </iframe>
+
+                    <!--
+                        REPLACE "kelly-video.mp4"
+                        WITH YOUR OWN VIDEO FILE.
+                    -->
+
+                        Your browser does not support video.
+
+                    </video>
+
+                </div>
+
+                <div class="post-stats">
+
+                    <span id="likeCount">❤️ 128</span>
+
+                    <span>24 comments · 12 shares</span>
+
+                </div>
+
+                <div class="post-buttons">
+
+                    <button onclick="likePost(this)">
+                        ❤️ Like
+                    </button>
+
+                    <button onclick="commentPost()">
+                        💬 Comment
+                    </button>
+
+                    <button>
+                        ↗️ Share
+                    </button>
+
+                </div>
+
+                <div id="comments">
+
+                    <div class="comment">
+
+                        <div class="comment-avatar">
+                            👩
+                        </div>
+
+                        <div class="comment-box">
+
+                            <div class="comment-name">
+                                Maria
+                            </div>
+
+                            This page is so cute! 💕😍
+
+                        </div>
+
+                    </div>
+
+                    <div class="comment">
+
+                        <div class="comment-avatar">
+                            👩🏽
+                        </div>
+
+                        <div class="comment-box">
+
+                            <div class="comment-name">
+                                Jessica
+                            </div>
+
+                            Love the pink theme! 💗
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+            <!-- SECOND POST -->
+            <article class="post">
+
+                <div class="post-header">
+
+                    <div class="small-avatar">
+                       <img src="Kelly.jpg" alt="Kelly">
+                    </div>
+
+                    <div>
+
+                        <div class="post-name">
+                            Kelly Adkins
+                        </div>
+
+                        <div class="post-time">
+                            Yesterday · 🌎
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="post-text">
+
+                    Sometimes you just have to make your own happiness. 💗
+
+                    <br><br>
+
+                    Life is too short not to enjoy the little things,
+                    laugh a lot, and be yourself. ✨
+
+                </div>
+
+                <div>
+                  <img src="Scooby.JPG" alt="Scooby" class="Scooby-image" style="width:50%; height:auto; display:block; margin:0 auto;">
+                </div>
+
+                <div class="post-stats">
+
+                    <span>❤️ 246</span>
+
+                    <span>38 comments · 17 shares</span>
+
+                </div>
+
+                <div class="post-buttons">
+
+                    <button onclick="likePost(this)">
+                        ❤️ Like
+                    </button>
+
+                    <button onclick="commentPost()">
+                        💬 Comment
+                    </button>
+
+                    <button>
+                        ↗️ Share
+                    </button>
+
+                </div>
+
+            </article>
+
+            <!-- THIRD POST -->
+            <article class="post">
+
+                <div class="post-header">
+
+                    <div class="small-avatar">
+                        <img src="Kelly.jpg" alt="Kelly">
+                    </div>
+
+                    <div>
+
+                        <div class="post-name">
+                            Kelly Adkins
+                        </div>
+
+                        <div class="post-time">
+                            3 days ago · 🌎
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="post-text">
+
+                    💗 Things I'm loving right now:
+
+                    <br><br>
+
+                    ☕ Coffee<br>
+                    🎵 Music<br>
+                    💻 Coding<br>
+                    🌸 Pink everything<br>
+                    🎥 Making videos<br>
+                    ✨ Learning new things
+
+                </div>
+
+                <div class="post-stats">
+
+                    <span>❤️ 189</span>
+
+                    <span>31 comments · 9 shares</span>
+
+                </div>
+
+                <div class="post-buttons">
+
+                    <button onclick="likePost(this)">
+                        ❤️ Like
+                    </button>
+
+                    <button onclick="commentPost()">
+                        💬 Comment
+                    </button>
+
+                    <button>
+                        ↗️ Share
+                    </button>
+
+                </div>
+
+            </article>
+
+            <!-- FOURTH POST -->
+            <article class="post">
+
+                <div class="post-header">
+
+                    <div class="small-avatar">
+                        <img sec="Kelly.jpg" alt="Kelly">
+                    </div>
+
+                    <div>
+
+                        <div class="post-name">
+                            Kelly Adkins
+                        </div>
+
+                        <div class="post-time">
+                            1 week ago · 🌎
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="post-text">
+
+                    Welcome to my page! 💕 If you're new here,
+                    make yourself comfortable.
+
+                    <br><br>
+
+                    There will be more videos, pictures, updates,
+                    stories and random things posted here.
+
+                    <br><br>
+
+                    Thanks for being here! 💗
+
+                </div>
+
+                <div class="post-stats">
+
+                    <span>❤️ 315</span>
+
+                    <span>52 comments · 22 shares</span>
+
+                </div>
+
+                <div class="post-buttons">
+
+                    <button onclick="likePost(this)">
+                        ❤️ Like
+                    </button>
+
+                    <button onclick="commentPost()">
+                        💬 Comment
+                    </button>
+
+                    <button>
+                        ↗️ Share
+                    </button>
+
+                </div>
+
+            </article>
+
+        </main>
+
+        <!-- RIGHT SIDEBAR -->
+        <aside class="sidebar right-sidebar">
+
+            <div class="sidebar-card">
+
+                <h3>Friends</h3>
+
+                <div class="friend">
+
+                    <div class="friend-avatar">👩</div>
+
+                    <div>
+                        Maria
+                        <span class="online"></span>
+                    </div>
+
+                </div>
+
+                <div class="friend">
+
+                    <div class="friend-avatar">👩🏽</div>
+
+                    <div>
+                        Jessica
+                        <span class="online"></span>
+                    </div>
+
+                </div>
+
+                <div class="friend">
+
+                    <div class="friend-avatar">👩🏻</div>
+
+                    <div>
+                        Sofia
+                        <span class="online"></span>
+                    </div>
+
+                </div>
+
+                <div class="friend">
+
+                    <div class="friend-avatar">👩🏾</div>
+
+                    <div>
+                        Ashley
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="sidebar-card">
+
+                <h3>Trending 💗</h3>
+
+                <p>🌸 Kelly's Page</p>
+
+                <br>
+
+                <p>🎥 New Videos</p>
+
+                <br>
+
+                <p>💻 Coding</p>
+
+                <br>
+
+                <p>✨ Good Vibes</p>
+
+            </div>
+
+            <div class="sidebar-card">
+
+                <h3>Advertisement</h3>
+
+                <div
+                    style="
+                    background:#ffe1ee;
+                    padding:25px;
+                    border-radius:12px;
+                    text-align:center;
+                    color:#d62f7d;
+                    "
+                >
+                    💗<br>
+                    Your Advertisement Here
+                </div>
+
+            </div>
+
+        </aside>
+
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+
+        <h2>💗 Kelly's Page 💗</h2>
+
+        <br>
+
+        <p>
+            Made with HTML, CSS & JavaScript
+        </p>
+
+        <br>
+
+        <p>
+            © 2026 Kelly's Page · All Rights Reserved
+        </p>
+
+    </footer>
+
+    <!-- JAVASCRIPT -->
+    <script>
+
+        let likes = 128;
+
+        function likePost(button) {
+
+            if (button.classList.contains("liked")) {
+
+                button.classList.remove("liked");
+
+                likes--;
+
+            } else {
+
+                button.classList.add("liked");
+
+                likes++;
+
+            }
+
+            const likeCounter =
+                document.getElementById("likeCount");
+
+            if (likeCounter) {
+
+                likeCounter.textContent =
+                    "❤️ " + likes;
+
+            }
+
+        }
+
+        function commentPost() {
+
+            const comment =
+                prompt("Write your comment:");
+
+            if (!comment || comment.trim() === "") {
+                return;
+            }
+
+            const comments =
+                document.getElementById("comments");
+
+            const newComment =
+                document.createElement("div");
+
+            newComment.className = "comment";
+
+            newComment.innerHTML = `
+
+                <div class="comment-avatar">
+                    👩🏻
+                </div>
+
+                <div class="comment-box">
+
+                    <div class="comment-name">
+                        You
+                    </div>
+
+                    ${comment}
+
+                </div>
+
+            `;
+
+            comments.appendChild(newComment);
+
+        }
+
+        function followKelly() {
+
+            alert(
+                "💕 You are now following Kelly's Page!"
+            );
+
+        }
+
+        /* SIMPLE SEARCH */
+
+        const search =
+            document.querySelector(".search");
+
+        search.addEventListener(
+            "keypress",
+            function(event) {
+
+                if (event.key === "Enter") {
+
+                    alert(
+                        "Searching for: " +
+                        search.value
+                    );
+
+                }
+
+            }
+        );
+
+        /* CREATE POST */
+
+        const postInput =
+            document.getElementById("postInput");
+
+        postInput.addEventListener(
+            "keypress",
+            function(event) {
+
+                if (event.key === "Enter") {
+
+                    if (
+                        postInput.value.trim() === ""
+                    ) {
+                        return;
+                    }
+
+                    alert(
+                        "Your post was created! 💗"
+                    );
+
+                    postInput.value = "";
+
+                }
+
+            }
+        );
+
+    </script>
+
+  
+</body>
+</html>
+<html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Kelly's Page</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f8e8f0;
+            color: #333;
+        }
+
+        /* TOP NAVIGATION */
+        .navbar {
+            height: 65px;
+            background: linear-gradient(90deg, #ff4f9a, #ff82bb);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 30px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.15);
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .search {
+            background: white;
+            color: #999;
+            border-radius: 25px;
+            padding: 10px 20px;
+            width: 280px;
+            border: none;
+            outline: none;
+        }
+
+        .nav-icons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .nav-button {
+            background: rgba(255,255,255,0.2);
+            border: none;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .nav-button:hover {
+            background: rgba(255,255,255,0.35);
+        }
+
+        /* MAIN LAYOUT */
+        .page {
+            max-width: 1200px;
+            margin: auto;
+            display: grid;
+            grid-template-columns: 250px 1fr 250px;
+            gap: 20px;
+            padding: 25px 15px;
+        }
+
+        /* SIDEBARS */
+        .sidebar {
+            position: sticky;
+            top: 90px;
+            height: fit-content;
+        }
+
+        .sidebar-card {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        }
+
+        .sidebar-card h3 {
+            color: #e83e8c;
+            margin-bottom: 15px;
+        }
+
+        .menu-item {
+            padding: 12px;
+            border-radius: 10px;
+            cursor: pointer;
+            margin-bottom: 5px;
+        }
+
+        .menu-item:hover {
+            background: #ffe1ee;
+        }
+
+        /* PROFILE */
+        .profile-cover {
+            height: 230px;
+            background-image: url("kelly.jpg");
+            background-size: 100% auto;
+            background-position: center;
+            background-repeat: no-repeat;
+            border-radius: 18px 18px 0 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .profile-picture {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 6px solid white;
+            background: #ffc1dd;
+            position: absolute;
+            bottom: 10px;
+            left: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 55px;
+            overflow: hidden;
+            z-index: 2;
+          
+        }
+        .profile-picture img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          border-radius: 50%;
+          display: block;
+        }
+   
+        .scooby-image {
+          width: 70%;
+          margin: 0 auto;
+          height: 100px;
+          object-fit: contain;
+          display: block;
+        }
+
+
+        .profile-info {
+            background: white;
+            padding: 100px 30px 25px;
+            border-radius: 0 0 18px 18px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            position: relative;
+            z-index: 1;
+        }
+
+        .profile-info h1 {
+            color: #d62f7d;
+            margin-bottom: 5px;
+        }
+
+        .profile-info p {
+            color: #777;
+        }
+
+        .profile-buttons {
+            margin-top: 20px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .pink-button {
+            background: #ff4f9a;
+            color: white;
+            border: none;
+            padding: 11px 20px;
+            border-radius: 22px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .pink-button:hover {
+            background: #e63282;
+        }
+
+        .white-button {
+            background: #ffe1ee;
+            color: #d62f7d;
+            border: none;
+            padding: 11px 20px;
+            border-radius: 22px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        /* CREATE POST */
+        .create-post {
+            background: white;
+            margin-top: 20px;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        }
+
+        .post-input {
+            width: 100%;
+            border: none;
+            background: #f4f4f4;
+            padding: 15px;
+            border-radius: 25px;
+            outline: none;
+            font-size: 15px;
+        }
+
+        .post-actions {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 15px;
+        }
+
+        .post-action {
+            border: none;
+            background: transparent;
+            color: #d62f7d;
+            font-weight: bold;
+            cursor: pointer;
+            padding: 10px;
+        }
+
+        .post-action:hover {
+            background: #ffe1ee;
+            border-radius: 10px;
+        }
+
+        /* POSTS */
+        .post {
+            background: white;
+            border-radius: 15px;
+            margin-top: 20px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        }
+
+        .post-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 15px;
+        }
+
+        .small-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: #ffb4d3;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 25px;
+            overflow: hidden;
+        }
+        .small-avatar img { 
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          border-radius: 50%;
+          
+        }
+         
+        }
+
+        .post-name {
+            font-weight: bold;
+            color: #d62f7d;
+        }
+
+        .post-time {
+            font-size: 12px;
+            color: #999;
+            margin-top: 3px;
+        }
+
+        .post-text {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        /* VIDEO */
+        .video-container {
+            width: 100%;
+            background: #111;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        video {
+            width: 100%;
+            display: block;
+            max-height: 600px;
+        }
+
+        .video-placeholder {
+            height: 400px;
+            background: linear-gradient(135deg, #ff4f9a, #a936d8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 30px;
+            text-align: center;
+            padding: 30px;
+        }
+
+        /* POST STATS */
+        .post-stats {
+            display: flex;
+            justify-content: space-between;
+            color: #888;
+            padding: 12px 5px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .post-buttons {
+            display: flex;
+            justify-content: space-around;
+            padding: 8px 0;
+        }
+
+        .post-buttons button {
+            border: none;
+            background: transparent;
+            padding: 10px 30px;
+            cursor: pointer;
+            font-weight: bold;
+            color: #777;
+            border-radius: 8px;
+        }
+
+        .post-buttons button:hover {
+            background: #ffe1ee;
+            color: #d62f7d;
+        }
+
+        .liked {
+            color: #ff2f8e !important;
+        }
+
+        /* COMMENTS */
+        .comment {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .comment-avatar {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: #ffc2dc;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .comment-box {
+            background: #f1f1f1;
+            padding: 10px 15px;
+            border-radius: 15px;
+            flex: 1;
+        }
+
+        .comment-name {
+            font-weight: bold;
+            color: #d62f7d;
+            font-size: 14px;
+        }
+
+        /* RIGHT SIDEBAR */
+        .friend {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .friend-avatar {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: #ffb1d1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .online {
+            width: 10px;
+            height: 10px;
+            background: #35c759;
+            border-radius: 50%;
+            display: inline-block;
+            margin-left: 5px;
+        }
+
+        /* FOOTER */
+        footer {
+            background: #d62f7d;
+            color: white;
+            text-align: center;
+            padding: 35px;
+            margin-top: 50px;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 950px) {
+            .page {
+                grid-template-columns: 200px 1fr;
+            }
+
+            .right-sidebar {
+                display: none;
+            }
+        }
+
+        @media (max-width: 700px) {
+            .page {
+                display: block;
+            }
+
+            .left-sidebar {
+                display: none;
+            }
+
+            .search {
+                width: 150px;
+            }
+
+            .navbar {
+                padding: 0 12px;
+            }
+
+            .nav-icons {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVIGATION -->
+    <nav class="navbar">
+
+        <div class="logo">
+            💗 Kelly
+        </div>
+
+        <input
+            class="search"
+            type="text"
+            placeholder="Search Kelly's Page..."
+        >
+
+        <div class="nav-icons">
+            <button class="nav-button">🏠 Home</button>
+            <button class="nav-button">👥 Friends</button>
+            <button class="nav-button">💬 Messages</button>
+        </div>
+
+    </nav>
+
+    <!-- MAIN PAGE -->
+    <div class="page">
+
+        <!-- LEFT SIDEBAR -->
+        <aside class="sidebar left-sidebar">
+
+            <div class="sidebar-card">
+
+                <h3>Menu</h3>
+
+                <div class="menu-item">🏠 Home</div>
+                <div class="menu-item">👤 My Profile</div>
+                <div class="menu-item">👥 Friends</div>
+                <div class="menu-item">📸 Photos</div>
+                <div class="menu-item">🎥 Videos</div>
+                <div class="menu-item">❤️ Favorites</div>
+                <div class="menu-item">⚙️ Settings</div>
+
+            </div>
+
+            <div class="sidebar-card">
+
+                <h3>About Kelly</h3>
+
+                <p>
+                    Welcome to my little corner of the internet! 💕
+                </p>
+
+            </div>
+
+        </aside>
+
+        <!-- CENTER CONTENT -->
+        <main>
+
+            <!-- PROFILE -->
+            <section>
+
+                <div class="profile-cover">
+                
+                  
+                    <div class="profile-picture">
+                       <img src="Kelly.jpg" alt="Kelly.jpg">
+                    </div>
+
+                </div>
+
+                <div class="profile-info">
+
+                    <h1>Welcome to Kelly's Page 💗</h1>
+
+                    <p>
+                        Welcome to my page! Follow along for photos,
+                        videos, thoughts, and everything Kelly. ✨
+                    </p>
+
+                    <div class="profile-buttons">
+
+                        <button
+                            class="pink-button"
+                            onclick="followKelly()"
+                        >
+                            ❤️ Follow
+                        </button>
+
+                        <button class="white-button">
+                            ✉️ Message
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+            <!-- CREATE POST -->
+            <div class="create-post">
+
+                <input
+                    id="postInput"
+                    class="post-input"
+                    type="text"
+                    placeholder="What's on your mind, Kelly?"
+                >
+
+                <div class="post-actions">
+
+                    <button class="post-action">
+                        🎥 Video
+                    </button>
+
+                    <button class="post-action">
+                        📷 Photo
+                    </button>
+
+                    <button class="post-action">
+                        😊 Feeling
+                    </button>
+
+                </div>
+
+            </div>
+
+            <!-- VIDEO POST -->
+           <article class="post">
+                <div class="post-header">
+
+                    <div class="small-avatar">
+                       <img src="Kelly.jpg" alt="kelly">
+                    </div>
+                    <div>
+
+                        <div class="post-name">
+                            Kelly Adkins
+                        </div>
+
+                        <div class="post-time">
+                            Just now · 🌎
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="post-text">
+
+                    <strong>My latest video! 🎥💕</strong>
+
+                    <br><br>
+
+                    Welcome to Kelly's Page! Thanks for stopping by. 💗
+
+                </div>
+
+                <div class="video-container">
+
+    <iframe
+        width="100%"
+        height="400"
+        src="https://www.youtube.com/embed/U2WDdccgaDY?autoplay=1&mute=1&playsinline=1"
+        title="It's Called: Freefall"
+        frameborder="0"
+        allow="autoplay; encrypted-media; picture-in-picture"
+        allowfullscreen>
+    </iframe>
+
+                    <!--
+                        REPLACE "kelly-video.mp4"
+                        WITH YOUR OWN VIDEO FILE.
+                    -->
+
+                        Your browser does not support video.
+
+                    </video>
+
+                </div>
+
+                <div class="post-stats">
+
+                    <span id="likeCount">❤️ 128</span>
+
+                    <span>24 comments · 12 shares</span>
+
+                </div>
+
+                <div class="post-buttons">
+
+                    <button onclick="likePost(this)">
+                        ❤️ Like
+                    </button>
+
+                    <button onclick="commentPost()">
+                        💬 Comment
+                    </button>
+
+                    <button>
+                        ↗️ Share
+                    </button>
+
+                </div>
+
+                <div id="comments">
+
+                    <div class="comment">
+
+                        <div class="comment-avatar">
+                            👩
+                        </div>
+
+                        <div class="comment-box">
+
+                            <div class="comment-name">
+                                Maria
+                            </div>
+
+                            This page is so cute! 💕😍
+
+                        </div>
+
+                    </div>
+
+                    <div class="comment">
+
+                        <div class="comment-avatar">
+                            👩🏽
+                        </div>
+
+                        <div class="comment-box">
+
+                            <div class="comment-name">
+                                Jessica
+                            </div>
+
+                            Love the pink theme! 💗
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+            <!-- SECOND POST -->
+            <article class="post">
+
+                <div class="post-header">
+
+                    <div class="small-avatar">
+                       <img src="Kelly.jpg" alt="Kelly">
+                    </div>
+
+                    <div>
+
+                        <div class="post-name">
+                            Kelly Adkins
+                        </div>
+
+                        <div class="post-time">
+                            Yesterday · 🌎
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="post-text">
+
+                    Sometimes you just have to make your own happiness. 💗
+
+                    <br><br>
+
+                    Life is too short not to enjoy the little things,
+                    laugh a lot, and be yourself. ✨
+
+                </div>
+
+                <div>
+                  <img src="Scooby.JPG" alt="Scooby" class="Scooby-image" style="width:50%; height:auto; display:block; margin:0 auto;">
+                </div>
+
+                <div class="post-stats">
+
+                    <span>❤️ 246</span>
+
+                    <span>38 comments · 17 shares</span>
+
+                </div>
+
+                <div class="post-buttons">
+
+                    <button onclick="likePost(this)">
+                        ❤️ Like
+                    </button>
+
+                    <button onclick="commentPost()">
+                        💬 Comment
+                    </button>
+
+                    <button>
+                        ↗️ Share
+                    </button>
+
+                </div>
+
+            </article>
+
+            <!-- THIRD POST -->
+            <article class="post">
+
+                <div class="post-header">
+
+                    <div class="small-avatar">
+                        <img src="Kelly.jpg" alt="Kelly">
+                    </div>
+
+                    <div>
+
+                        <div class="post-name">
+                            Kelly Adkins
+                        </div>
+
+                        <div class="post-time">
+                            3 days ago · 🌎
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="post-text">
+
+                    💗 Things I'm loving right now:
+
+                    <br><br>
+
+                    ☕ Coffee<br>
+                    🎵 Music<br>
+                    💻 Coding<br>
+                    🌸 Pink everything<br>
+                    🎥 Making videos<br>
+                    ✨ Learning new things
+
+                </div>
+
+                <div class="post-stats">
+
+                    <span>❤️ 189</span>
+
+                    <span>31 comments · 9 shares</span>
+
+                </div>
+
+                <div class="post-buttons">
+
+                    <button onclick="likePost(this)">
+                        ❤️ Like
+                    </button>
+
+                    <button onclick="commentPost()">
+                        💬 Comment
+                    </button>
+
+                    <button>
+                        ↗️ Share
+                    </button>
+
+                </div>
+
+            </article>
+
+            <!-- FOURTH POST -->
+            <article class="post">
+
+                <div class="post-header">
+
+                    <div class="small-avatar">
+                        <img sec="Kelly.jpg" alt="Kelly">
+                    </div>
+
+                    <div>
+
+                        <div class="post-name">
+                            Kelly Adkins
+                        </div>
+
+                        <div class="post-time">
+                            1 week ago · 🌎
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="post-text">
+
+                    Welcome to my page! 💕 If you're new here,
+                    make yourself comfortable.
+
+                    <br><br>
+
+                    There will be more videos, pictures, updates,
+                    stories and random things posted here.
+
+                    <br><br>
+
+                    Thanks for being here! 💗
+
+                </div>
+
+                <div class="post-stats">
+
+                    <span>❤️ 315</span>
+
+                    <span>52 comments · 22 shares</span>
+
+                </div>
+
+                <div class="post-buttons">
+
+                    <button onclick="likePost(this)">
+                        ❤️ Like
+                    </button>
+
+                    <button onclick="commentPost()">
+                        💬 Comment
+                    </button>
+
+                    <button>
+                        ↗️ Share
+                    </button>
+
+                </div>
+
+            </article>
+
+        </main>
+
+        <!-- RIGHT SIDEBAR -->
+        <aside class="sidebar right-sidebar">
+
+            <div class="sidebar-card">
+
+                <h3>Friends</h3>
+
+                <div class="friend">
+
+                    <div class="friend-avatar">👩</div>
+
+                    <div>
+                        Maria
+                        <span class="online"></span>
+                    </div>
+
+                </div>
+
+                <div class="friend">
+
+                    <div class="friend-avatar">👩🏽</div>
+
+                    <div>
+                        Jessica
+                        <span class="online"></span>
+                    </div>
+
+                </div>
+
+                <div class="friend">
+
+                    <div class="friend-avatar">👩🏻</div>
+
+                    <div>
+                        Sofia
+                        <span class="online"></span>
+                    </div>
+
+                </div>
+
+                <div class="friend">
+
+                    <div class="friend-avatar">👩🏾</div>
+
+                    <div>
+                        Ashley
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="sidebar-card">
+
+                <h3>Trending 💗</h3>
+
+                <p>🌸 Kelly's Page</p>
+
+                <br>
+
+                <p>🎥 New Videos</p>
+
+                <br>
+
+                <p>💻 Coding</p>
+
+                <br>
+
+                <p>✨ Good Vibes</p>
+
+            </div>
+
+            <div class="sidebar-card">
+
+                <h3>Advertisement</h3>
+
+                <div
+                    style="
+                    background:#ffe1ee;
+                    padding:25px;
+                    border-radius:12px;
+                    text-align:center;
+                    color:#d62f7d;
+                    "
+                >
+                    💗<br>
+                    Your Advertisement Here
+                </div>
+
+            </div>
+
+        </aside>
+
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+
+        <h2>💗 Kelly's Page 💗</h2>
+
+        <br>
+
+        <p>
+            Made with HTML, CSS & JavaScript
+        </p>
+
+        <br>
+
+        <p>
+            © 2026 Kelly's Page · All Rights Reserved
+        </p>
+
+    </footer>
+
+    <!-- JAVASCRIPT -->
+    <script>
+
+        let likes = 128;
+
+        function likePost(button) {
+
+            if (button.classList.contains("liked")) {
+
+                button.classList.remove("liked");
+
+                likes--;
+
+            } else {
+
+                button.classList.add("liked");
+
+                likes++;
+
+            }
+
+            const likeCounter =
+                document.getElementById("likeCount");
+
+            if (likeCounter) {
+
+                likeCounter.textContent =
+                    "❤️ " + likes;
+
+            }
+
+        }
+
+        function commentPost() {
+
+            const comment =
+                prompt("Write your comment:");
+
+            if (!comment || comment.trim() === "") {
+                return;
+            }
+
+            const comments =
+                document.getElementById("comments");
+
+            const newComment =
+                document.createElement("div");
+
+            newComment.className = "comment";
+
+            newComment.innerHTML = `
+
+                <div class="comment-avatar">
+                    👩🏻
+                </div>
+
+                <div class="comment-box">
+
+                    <div class="comment-name">
+                        You
+                    </div>
+
+                    ${comment}
+
+                </div>
+
+            `;
+
+            comments.appendChild(newComment);
+
+        }
+
+        function followKelly() {
+
+            alert(
+                "💕 You are now following Kelly's Page!"
+            );
+
+        }
+
+        /* SIMPLE SEARCH */
+
+        const search =
+            document.querySelector(".search");
+
+        search.addEventListener(
+            "keypress",
+            function(event) {
+
+                if (event.key === "Enter") {
+
+                    alert(
+                        "Searching for: " +
+                        search.value
+                    );
+
+                }
+
+            }
+        );
+
+        /* CREATE POST */
+
+        const postInput =
+            document.getElementById("postInput");
+
+        postInput.addEventListener(
+            "keypress",
+            function(event) {
+
+                if (event.key === "Enter") {
+
+                    if (
+                        postInput.value.trim() === ""
+                    ) {
+                        return;
+                    }
+
+                    alert(
+                        "Your post was created! 💗"
+                    );
+
+                    postInput.value = "";
+
+                }
+
+            }
+        );
+
+    </script>
+
+  
+</body>
+</html>
+ 
+
